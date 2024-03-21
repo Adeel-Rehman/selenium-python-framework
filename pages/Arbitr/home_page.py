@@ -9,3 +9,7 @@ class HomePage(PageBase):
     @allure.step("Getting title of the page")
     def get_page_title(self):
         return self.driver.title
+    
+    @allure.step("Getting URL of the page")
+    def get_page_URL(self):
+        return self.driver.current_url

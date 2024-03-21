@@ -2,8 +2,9 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 from helpers.webdriver_listener import WebDriverListener
-from msedge.selenium_tools import EdgeOptions, Edge
+from selenium.webdriver.edge import service
 from extensions.webdriver_extended import WebDriverExtended
 
 
@@ -16,7 +17,8 @@ class DriverFactory:
             if config["headless_mode"] is True:
                 options.add_argument("--headless")
             driver = WebDriverExtended(
-                webdriver.Chrome(ChromeDriverManager().install(), options=options),
+                ##webdriver.Chrome(ChromeDriverManager().install(), options=options),
+                webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=options),
                 WebDriverListener(), config
             )
             return driver
@@ -30,13 +32,13 @@ class DriverFactory:
             )
             return driver
         elif config["browser"] == "edge":
-            options = EdgeOptions()
+            options = webdriver.EdgeOptions()
             options.use_chromium = True
             if config["headless_mode"] is True:
                 options.headless = True
             driver_path = EdgeChromiumDriverManager().install()
             driver = WebDriverExtended(
-                Edge(executable_path=driver_path, options=options),
+                webdriver.Edge(executable_path=driver_path, options=options),
                 WebDriverListener(), config
             )
             return driver

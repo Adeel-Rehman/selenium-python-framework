@@ -3,13 +3,15 @@ import json
 import allure
 import pytest
 from allure_commons.types import AttachmentType
-
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from utils.driver_factory import DriverFactory
 
 CONFIG_PATH = "config.json"
 DEFAULT_WAIT_TIME = 10
 SUPPORTED_BROWSERS = ["chrome", "firefox", "edge"]
-DEFAULT_URL = "http://www.demoblaze.com/"
+DEFAULT_URL = "https://arbitr-security-cpso.ue.r.appspot.com/"
 
 
 @pytest.fixture(scope='session')
@@ -31,11 +33,9 @@ def browser_setup(config):
 def wait_time_setup(config):
     return config['wait_time'] if 'wait_time' in config else DEFAULT_WAIT_TIME
 
-
 @pytest.fixture(scope='session')
 def url_setup(config):
     return config["base_url"] if "base_url" in config else DEFAULT_URL
-
 
 @pytest.fixture()
 def setup(request, config):

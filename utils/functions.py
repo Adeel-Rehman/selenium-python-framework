@@ -1,3 +1,19 @@
+import json
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+
+CONFIG_PATH = "config.json"
+DEFAULT_WAIT_TIME = 10
+SUPPORTED_BROWSERS = ["chrome", "firefox", "edge"]
+DEFAULT_URL = "https://arbitr-security-cpso.ue.r.appspot.com/"
+
+
+def config():
+    config_file = open(CONFIG_PATH)
+    return json.load(config_file)
+
 def adjust_travellers_number(travellers_input_val, num, subtract_btn, add_btn):
     while travellers_input_val > num:
         subtract_btn.click()
@@ -28,3 +44,7 @@ def click_displayed_datestamp(datestamps):
         if datestamp.is_displayed():
             datestamp.click()
             break
+
+def wait_for_element_to_visible(driver,by,locator):
+    wait = WebDriverWait(driver, 60)
+    return wait.until(lambda d : driver.find_element(by,locator).is_displayed())    

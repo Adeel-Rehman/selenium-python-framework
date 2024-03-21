@@ -31,14 +31,20 @@ class SetCurrencyLocators:
 
 
 class LogInLocators:
-    user_account_menu = (By.XPATH, "//div[@class='dropdown dropdown-login dropdown-tab']")
-    login_link = (By.LINK_TEXT, "Login")
-    logout_link = (By.LINK_TEXT, "Logout")
+    user_profile_menu = (By.XPATH, "//span/img[contains(@class,'rounded-circle')]")
+    login_button = (By.XPATH, "//button[text()='Log in']")
+    login_link = (By.LINK_TEXT, "https://arbitr-security-cpso.ue.r.appspot.com/login")
+    logout_link = (By.XPATH, "//li[@class='list-group-item' and text()='Log out']")
+
     account_link = (By.LINK_TEXT, "Account")
-    sign_up_link = (By.XPATH, "Sign Up")
-    email_input = (By.XPATH, "//input[@placeholder='Email']")
-    password_input = (By.XPATH, "//input[@placeholder='Password']")
-    invalid_data_msg = (By.XPATH, "//div[@class='alert alert-danger']")
+    linkedin_login_button = (By.XPATH, "//h4[text()='Log in']//following-sibling::div[contains(@class,'social')]//div[text()=' LinkedIn']")
+    microsoft_login_button = (By.XPATH, "//h4[text()='Log in']//following-sibling::div[contains(@class,'social')]//div[text()=' Microsoft']")
+    google_login_button = (By.XPATH, "//h4[text()='Log in']//following-sibling::div[contains(@class,'social')]//div[text()=' Google']")
+    forgot_password_link = (By.XPATH, "//label[text()='Forgot password?']")
+    sign_up_link = (By.XPATH, "//span[text()='Sign Up']")
+    email_input = (By.XPATH, "//h4[text()='Log in']//following-sibling::div/label[text()='Your Email']/following-sibling::input")
+    password_input = (By.XPATH, "//h4[text()='Log in']//following-sibling::div/label[text()='Password']/following-sibling::input")
+    invalid_data_msg = (By.XPATH, "//div[@role='alert']//div[2]")
 
 
 class HeaderNavLocators:
@@ -137,8 +143,8 @@ class SearchResultsLocators:
     change_search_btn = (By.XPATH, "//button[@data-target='#change-search']")
 
 
-class UserAccountLocators:
-    welcome_msg = (By.XPATH, "//h3[@class='text-align-left']")
+class MainPageLocators:
+    profile_image = (By.XPATH, "//span/img[contains(@class,'rounded-circle')]")
     bookings_tab = (By.LINK_TEXT, "Bookings")
     my_profile_tab = (By.LINK_TEXT, "My profile")
     wishlist_tab = (By.LINK_TEXT, "Wishlist")
